@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "name": "Ivan",
+      "birhday": "12.11.55",
+      "surname": "Petrov",
+      "photo": "https://cdn-icons-png.flaticon.com/512/4825/4825112.png",
+      "id": 1
+    },
+    {
+      "name": "Valera",
+      "birhday": "03.02.18",
+      "surname": "Pods",
+      "photo": "https://cdn-icons-png.flaticon.com/512/4825/4825038.png",
+      "id": 2
+    }
+  ]
+}
