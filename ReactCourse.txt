@@ -1,0 +1,20 @@
+1. https://nnmclub.to/forum/viewtopic.php?t=1513683  - 
+WebForMySelf, Бернацкий Андрей | Верстка-Мастер. Полное руководство (2021)
+
+
+2.https://rutracker.org/forum/viewtopic.php?t=6065103  
+React + Next.js - с нуля. TypeScript, Hooks, SSR и CSS Grid
+
+Год выпуска: 2021
+Производитель: Udemy
+Сайт производителя: https://www.udemy.com/course/react-nextjs/
+Автор: Антон Ларичев
+
+3. youtube - минин
+
+Алекс Бэнкс, Ева Порселло | React. Современные шаблоны для разработки приложений, 2-е издание (2022) [PDF]
+https://nnmclub.to/forum/viewtopic.php?t=1495968
+
+
+useRef
+https://metanit.com/web/react/6.4.php
