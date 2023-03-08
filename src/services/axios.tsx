@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 
 export const useAxiosGet = (url: string) => {
   const [data, setData] = useState<any | null>(null);
-  const [error, setError] = useState('');
-  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState<string>('');
+  const [loaded, setLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     (async () => {

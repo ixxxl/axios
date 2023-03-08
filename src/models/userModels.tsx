@@ -1,7 +1,7 @@
 export interface IUsers {
   photo: string;
   birhday: string;
-  name: string;
+  name: any;
   surname: string;
 }
 
