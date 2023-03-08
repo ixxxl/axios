@@ -2,7 +2,7 @@ import { Button, Stack } from "@mui/material";
 import { padding } from "@mui/system";
 import { useEffect, useState } from "react";
 import { IUsers } from "../models/userModels";
-import { useAxiosGet } from "../services/axios";
+import { useAxiosGet } from "../services/axiosGET";
 import { WrapperDialog } from "./WrapperDialog";
 
 const UsersComponent = () => {
@@ -21,6 +21,7 @@ const UsersComponent = () => {
   useEffect(() => {
     setUsers(data);
   }, [data]);
+
   return (
     <>
       <hr />

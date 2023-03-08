@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export const getFakePhoto = (): string => {
   const links: string[] = [
     "https://cdn-icons-png.flaticon.com/512/9835/9835854.png",
