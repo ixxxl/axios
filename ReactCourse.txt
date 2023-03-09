@@ -20,6 +20,15 @@ useRef
 https://metanit.com/web/react/6.4.php
 
 
+Основы регулярных выражений в JavaScript
+https://habr.com/ru/company/ruvds/blog/343798/
+
+Не бойтесь регулярных выражений.
+https://www.youtube.com/watch?v=_pLpx6btq6U 
+
+Регулярные выражения (javascript.ru) 
+https://learn.javascript.ru/regular-expressions
+
 
   "console.log": {
     "scope": "javascript,typescript,typescriptreact",

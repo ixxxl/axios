@@ -6,8 +6,10 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  LinearProgress,
   TextField,
 } from "@mui/material";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { geDataBirthDay, getFakePhoto } from "../helpers/ComonFunction";
 import { IUsers } from "../models/userModels";
@@ -17,30 +19,65 @@ import { useAxiosPost } from "../services/axiosPOST";
 interface IProps {
   open: boolean;
   setClose: () => void;
+  getNewUser: (u: IUsers) => void;
 }
 
 export const WrapperDialog = (props: IProps) => {
   const { open, setClose } = props;
   const [newUserState, setNewUserState] = useState<IUsers | null>(null);
-  const [fieldTextState, setFieldTextState] = useState<any>({
-    name: "",
-    surname: "",
-  });
+  const [errorName, setErrorName] = useState<boolean>(false);
+  const [errorSurname, setErrorSurname] = useState<boolean>(false);
+  const [formValidationState, setformValidationState] =
+    useState<boolean>(false);
+  const [btnSubmit, setBtnSubmit] = useState<boolean>(false);
+  const [data, setData] = useState<any | null>(null);
+  const [error, setError] = useState("");
+  const [loaded, setLoaded] = useState(false);
 
   const nameChangeHandler = (e: any) => {
-    console.log(e.target.value);
-    setFieldTextState({ name: e.target.value });
+    setNewUserState((st: any) => ({ ...st, name: e.target.value }));
   };
 
   const surNameChangeHandler = (e: any) => {
-    console.log(e.target.value);
-    setFieldTextState({ surname: e.target.value });
+    setNewUserState((st: any) => ({ ...st, surname: e.target.value }));
   };
 
-  const { data, error } = useAxiosPost(
-    "http://localhost:3020/users",
-    fieldTextState
-  );
+  useEffect(() => {
+    if (btnSubmit) {
+      (async () => {
+        try {
+          const response: any = await axios.post(
+            "http://localhost:3020/users",
+            newUserState
+          );
+          props.getNewUser(response.data);
+          setClose();
+        } catch (error: any) {
+          setError(error.message);
+        } finally {
+          setLoaded(true);
+        }
+      })();
+    }
+  }, [btnSubmit]);
+
+  const submitFormHandler = () => {
+    console.log();
+    setBtnSubmit(true);
+  };
+
+  useEffect(() => {
+    if (newUserState) {
+      setErrorName(newUserState.name.length < 3);
+      setErrorSurname(newUserState.surname.length < 3);
+      setformValidationState(
+        newUserState.name.length < 3 && newUserState.surname.length < 3
+      );
+      console.log(
+        newUserState.name.length < 3 && newUserState.surname.length < 3
+      );
+    }
+  }, [newUserState]);
 
   useEffect(() => {
     if (open) {
@@ -59,34 +96,47 @@ export const WrapperDialog = (props: IProps) => {
       <Dialog open={open} onClose={setClose}>
         <DialogTitle></DialogTitle>
         {newUserState && (
-          <DialogContent>
+          <DialogContent
+            sx={{ display: "flex", flexDirection: "column", gap: "20px" }}
+          >
             <img src={newUserState.photo} width={"50px"} height={"50px"} />
             <p>{newUserState.birhday}</p>
             <TextField
               onChange={nameChangeHandler}
-              value={fieldTextState.name}
+              value={newUserState.name}
               id="outlined-basic"
               label="Name"
               variant="outlined"
+              required
+              error={errorName}
+              helperText={errorName ? "Incorrect entry." : ""}
             />
             <TextField
               onChange={surNameChangeHandler}
-              value={fieldTextState.surname}
+              value={newUserState.surname}
               id="outlined-basic"
               label="Surname"
               variant="outlined"
+              error={errorSurname}
+              helperText={errorSurname ? "Incorrect entry." : ""}
             />
+            <pre> {JSON.stringify(newUserState, null, 2)}</pre>
           </DialogContent>
         )}
         <DialogActions>
-          <Button
-            type="submit"
-            onSubmit={() => {
-              data;
-            }}
-          >
+          {/* <Button  onSubmit={onClickHandler}>
             Submit
-          </Button>
+          </Button> */}
+          {!btnSubmit ? (
+            <Button
+              onClick={submitFormHandler}
+              disabled={formValidationState}
+              variant="outlined"
+            >
+              Save
+            </Button>
+            
+          ) : <div style={{width:"100px"}}><LinearProgress variant="determinate"  /></div>}
           <Button onClick={setClose} autoFocus>
             Close
           </Button>
