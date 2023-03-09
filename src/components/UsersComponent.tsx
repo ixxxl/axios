@@ -5,12 +5,14 @@ import { IUsers } from "../models/userModels";
 import { useAxiosGet } from "../services/axiosGET";
 import { WrapperDialog } from "./WrapperDialog";
 import CloseIcon from "@mui/icons-material/Close";
+import { WrapperChange } from "./WrapperChange";
 
 const UsersComponent = () => {
   const [open, setOpen] = useState(false);
 
   const [users, setUsers] = useState<IUsers[]>([]);
   const [stateModalWindow, setStateModalWindow] = useState<boolean>(false);
+  const [stateChangeWindows, setStateChangeWindow] = useState<boolean>(false);
 
   const handleClick = () => {
     setOpen(true);
@@ -47,13 +49,17 @@ const UsersComponent = () => {
     setStateModalWindow(true);
   };
 
+  const openWrapperChange = () => {
+    setStateChangeWindow(true);
+  };
+
   const closeModalWindowHandler = () => {
     setStateModalWindow(false);
   };
 
   const getNewUser = (u: IUsers) => {
     setUsers((state) => [...state, u]);
-    setOpen(true)
+    setOpen(true);
   };
 
   const { data, error, loaded } = useAxiosGet(`http://localhost:3020/users`);
@@ -75,10 +81,15 @@ const UsersComponent = () => {
         direction="row"
       >
         <Button onClick={openModalWindowHandler} variant="contained">
-          Add
+          Add User
+        </Button>
+        <Button onClick={openModalWindowHandler} variant="contained">
+          Change User
+        </Button>
+        <Button onClick={openWrapperChange} variant="contained">
+          Remove User
         </Button>
         <div>
-          <Button onClick={handleClick}>Open simple snackbar</Button>
           <Snackbar
             open={open}
             autoHideDuration={6000}
@@ -90,12 +101,17 @@ const UsersComponent = () => {
       </Stack>
       <hr />
       <pre> {JSON.stringify(users, null, 2)}</pre>
-      {/* {users && users.map((user) => <p key={user.name}>{user.name}</p>)} */}
+
       <WrapperDialog
         getNewUser={getNewUser}
         open={stateModalWindow}
         setClose={closeModalWindowHandler}
       />
+      {/* <WrapperChange
+        getNewUser={getNewUser}
+        open={stateModalWindow}
+        setClose={closeModalWindowHandler}
+      /> */}
     </>
   );
 };

@@ -13,7 +13,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { geDataBirthDay, getFakePhoto } from "../helpers/ComonFunction";
 import { IUsers } from "../models/userModels";
-import UsersComponent from "./UsersComponent";
 
 interface IProps {
   open: boolean;
@@ -21,7 +20,7 @@ interface IProps {
   getNewUser: (u: IUsers) => void;
 }
 
-export const WrapperDialog = (props: IProps) => {
+export const WrapperChange = (props: IProps) => {
   const { open, setClose } = props;
   const [newUserState, setNewUserState] = useState<IUsers | null>(null);
   const [errorName, setErrorName] = useState<boolean>(false);
@@ -45,7 +44,7 @@ export const WrapperDialog = (props: IProps) => {
     if (btnSubmit) {
       (async () => {
         try {
-          const response: any = await axios.post(
+          const response: any = await axios.put(
             "http://localhost:3020/users",
             newUserState
           );
@@ -123,6 +122,9 @@ export const WrapperDialog = (props: IProps) => {
           </DialogContent>
         )}
         <DialogActions>
+          {/* <Button  onSubmit={onClickHandler}>
+            Submit
+          </Button> */}
           {!btnSubmit ? (
             <Button
               onClick={submitFormHandler}
@@ -133,7 +135,7 @@ export const WrapperDialog = (props: IProps) => {
             </Button>
           ) : (
             <div style={{ width: "100px" }}>
-              <LinearProgress variant="buffer" />
+              <LinearProgress variant="determinate" />
             </div>
           )}
           <Button onClick={setClose} autoFocus>
