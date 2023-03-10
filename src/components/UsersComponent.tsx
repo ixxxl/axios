@@ -1,4 +1,4 @@
-import { Button, IconButton, Snackbar, Stack } from "@mui/material";
+import { Box, Button, IconButton, Snackbar, Stack } from "@mui/material";
 import { padding } from "@mui/system";
 import { useEffect, useState } from "react";
 import { IUsers } from "../models/userModels";
@@ -6,6 +6,7 @@ import { useAxiosGet } from "../services/axiosGET";
 import { WrapperDialog } from "./WrapperDialog";
 import CloseIcon from "@mui/icons-material/Close";
 import { WrapperChange } from "./WrapperChange";
+import OneUserComponent from "./OneUserComponent";
 
 const UsersComponent = () => {
   const [open, setOpen] = useState(false);
@@ -13,6 +14,7 @@ const UsersComponent = () => {
   const [users, setUsers] = useState<IUsers[]>([]);
   const [stateModalWindow, setStateModalWindow] = useState<boolean>(false);
   const [stateChangeWindows, setStateChangeWindow] = useState<boolean>(false);
+  const [changedUser, setChangedUser] = useState<IUsers | null>(null);
 
   const handleClick = () => {
     setOpen(true);
@@ -49,7 +51,7 @@ const UsersComponent = () => {
     setStateModalWindow(true);
   };
 
-  const openWrapperChange = () => {
+  const changeUserEvent = () => {
     setStateChangeWindow(true);
   };
 
@@ -61,9 +63,18 @@ const UsersComponent = () => {
     setStateModalWindow(false);
   };
 
-  const getNewUser = (u: IUsers) => {
-    setUsers((state) => [...state, u]);
+  const getNewUser = (user: IUsers) => {
+    setUsers((state) => [...state, user]);
     setOpen(true);
+  };
+
+  const getModifiedUser=(user:IUsers)=>{
+    //setChangedUser(user)
+  }
+
+  const getChangedUser = (user: IUsers) => {
+    setChangedUser(user);
+    setStateChangeWindow(true);
   };
 
   const { data, error, loaded } = useAxiosGet(`http://localhost:3020/users`);
@@ -87,12 +98,7 @@ const UsersComponent = () => {
         <Button onClick={openModalWindowHandler} variant="contained">
           Add User
         </Button>
-        <Button onClick={openWrapperChange} variant="contained">
-          Change User
-        </Button>
-        <Button onClick={openWrapperChange} variant="contained">
-          Remove User
-        </Button>
+       
         <div>
           <Snackbar
             open={open}
@@ -104,18 +110,33 @@ const UsersComponent = () => {
         </div>
       </Stack>
       <hr />
-      <pre> {JSON.stringify(users, null, 2)}</pre>
+      <div onClick={changeUserEvent}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+          {users &&
+            users.map((user) => (
+              <OneUserComponent getChangedUser={getChangedUser} user={user} />
+            ))}
+        </Box>
+      </div>
+      {/* <pre> {JSON.stringify(users, null, 2)}</pre> */}
 
       <WrapperDialog
         getNewUser={getNewUser}
         open={stateModalWindow}
         setClose={closeModalWindowHandler}
       />
-      <WrapperChange
-        users={users}
+
+      <WrapperChange getModifiedUser={getModifiedUser}
+        user={changedUser}
         open={stateChangeWindows}
         setClose={closenWrapperChange}
       />
+
+      {/* <WrapperChange
+        users={users}
+        open={stateChangeWindows}
+        setClose={closenWrapperChange}
+      /> */}
     </>
   );
 };

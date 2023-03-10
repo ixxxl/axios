@@ -6,13 +6,11 @@ import { geDataBirthDay } from "./helpers/ComonFunction";
 import { WrapperDialog } from "./components/WrapperDialog";
 
 function App() {
-  
-
-  return <div className="App">
-<UsersComponent/>
-
-
-  </div>;
+  return (
+    <div className="App">
+      <UsersComponent />
+    </div>
+  );
 }
 
 export default App;

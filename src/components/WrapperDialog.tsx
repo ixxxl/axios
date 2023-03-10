@@ -29,6 +29,7 @@ export const WrapperDialog = (props: IProps) => {
   const [formValidationState, setformValidationState] =
     useState<boolean>(false);
   const [btnSubmit, setBtnSubmit] = useState<boolean>(false);
+ 
   const [data, setData] = useState<any | null>(null);
   const [error, setError] = useState("");
   const [loaded, setLoaded] = useState(false);
@@ -40,9 +41,9 @@ export const WrapperDialog = (props: IProps) => {
   const surNameChangeHandler = (e: any) => {
     setNewUserState((st: any) => ({ ...st, surname: e.target.value }));
   };
-  const refreshPage=()=> {
+  const refreshPage = () => {
     window.location.reload();
-  }
+  };
 
   useEffect(() => {
     if (btnSubmit) {
@@ -76,9 +77,7 @@ export const WrapperDialog = (props: IProps) => {
       setformValidationState(
         newUserState.name.length < 3 && newUserState.surname.length < 3
       );
-      console.log(
-        newUserState.name.length < 3 && newUserState.surname.length < 3
-      );
+      console.log(newUserState.name.length, newUserState.surname.length);
     }
   }, [newUserState]);
 

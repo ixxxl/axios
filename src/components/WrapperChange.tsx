@@ -8,6 +8,7 @@ import {
   DialogTitle,
   LinearProgress,
   TextField,
+  Typography,
 } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -16,14 +17,15 @@ import { IUsers } from "../models/userModels";
 
 interface IPropsChange {
   open: boolean;
-  setClose: () => void;
-  users: any;
+  setClose: any;
+  user: any;
+  getModifiedUser: (changedData: any) => void;
 }
 
 export const WrapperChange = (props: IPropsChange) => {
-  const { open, setClose } = props;
+  const { open, setClose, user } = props;
 
-  const [newUserState, setNewUserState] = useState<IUsers | null>(null);
+  const [currentUserState, setCurrentUserState] = useState<IUsers | null>(null);
 
   const [errorName, setErrorName] = useState<boolean>(false);
   const [errorSurname, setErrorSurname] = useState<boolean>(false);
@@ -37,49 +39,61 @@ export const WrapperChange = (props: IPropsChange) => {
   const [loaded, setLoaded] = useState(false);
 
   const nameChangeHandler = (e: any) => {
-    setNewUserState((st: any) => ({ ...st, name: e.target.value }));
+    setCurrentUserState((st: any) => ({ ...st, name: e.target.value }));
   };
 
   const surNameChangeHandler = (e: any) => {
-    setNewUserState((st: any) => ({ ...st, surname: e.target.value }));
+    setCurrentUserState((st: any) => ({ ...st, surname: e.target.value }));
   };
 
-  // useEffect(() => {
-  //   if (btnSubmit) {
-  //     (async () => {
-  //       try {
-  //         const response: any = await axios.put(
-  //           "http://localhost:3020/users",
-  //           newUserState
-  //         );
-  //         props.getNewUser(response.data);
-  //         setClose();
-  //       } catch (error: any) {
-  //         setError(error.message);
-  //       } finally {
-  //         setLoaded(true);
-  //       }
-  //     })();
-  //   }
-  // }, [btnSubmit]);
+  useEffect(() => {
+    if (user) {
+      setCurrentUserState(user);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (btnSubmit) {
+      (async () => {
+        try {
+          const response: any = await axios.put(
+            `http://localhost:3020/users/${user.id}`,
+            currentUserState
+          );
+          refreshPage();
+          props.getModifiedUser(response.data);
+          // setClose();
+        } catch (error: any) {
+          setError(error.message);
+        } finally {
+          setLoaded(true);
+        }
+      })();
+    }
+  }, [btnSubmit]);
+
+  const refreshPage = () => {
+    window.location.reload();
+  };
+
 
   const submitFormHandler = () => {
     console.log();
     setBtnSubmit(true);
   };
 
-  // useEffect(() => {
-  //   if (newUserState) {
-  //     setErrorName(newUserState.name.length < 3);
-  //     setErrorSurname(newUserState.surname.length < 3);
-  //     setformValidationState(
-  //       newUserState.name.length < 3 && newUserState.surname.length < 3
-  //     );
-  //     console.log(
-  //       newUserState.name.length < 3 && newUserState.surname.length < 3
-  //     );
-  //   }
-  // }, [newUserState]);
+  useEffect(() => {
+    if (currentUserState) {
+      setErrorName(currentUserState.name.length < 3);
+      setErrorSurname(currentUserState.surname.length < 3);
+      setformValidationState(
+        currentUserState.name.length < 3 && currentUserState.surname.length < 3
+      );
+      console.log(
+        currentUserState.name.length < 3 && currentUserState.surname.length < 3
+      );
+    }
+  }, [currentUserState]);
 
   // useEffect(() => {
   //   if (open) {
@@ -89,7 +103,7 @@ export const WrapperChange = (props: IPropsChange) => {
   //       name: "",
   //       surname: "",
   //     };
-  //     setNewUserState(u);
+  //     //setNewUserState(u);
   //   }
   // }, [open]);
 
@@ -97,7 +111,35 @@ export const WrapperChange = (props: IPropsChange) => {
     <div>
       <Dialog open={open} onClose={setClose}>
         <DialogTitle></DialogTitle>
-        <DialogContent></DialogContent>
+        {currentUserState && (
+          <DialogContent
+            sx={{ display: "flex", flexDirection: "column", gap: "20px" }}
+          >
+            <img src={user.photo} width={"50px"} height={"50px"} />
+            <p>{user.birhday}</p>
+
+            <TextField
+              onChange={nameChangeHandler}
+              value={currentUserState.name}
+              id="outlined-basic"
+              label="Name"
+              variant="outlined"
+              required
+              error={errorName}
+              helperText={errorName ? "Incorrect entry." : ""}
+            />
+            <TextField
+              onChange={surNameChangeHandler}
+              value={currentUserState.surname}
+              id="outlined-basic"
+              label="Surname"
+              variant="outlined"
+              error={errorSurname}
+              helperText={errorSurname ? "Incorrect entry." : ""}
+            />
+            <pre> {JSON.stringify(props.user, null, 2)}</pre>
+          </DialogContent>
+        )}
 
         {/* {props.users.map((u:any) => (
           <div>{u.name}</div>
@@ -113,7 +155,7 @@ export const WrapperChange = (props: IPropsChange) => {
             </Button>
           ) : (
             <div style={{ width: "100px" }}>
-              <LinearProgress variant="determinate" />
+              {/* <LinearProgress variant="determinate" /> */}
             </div>
           )}
           <Button onClick={setClose} autoFocus>
