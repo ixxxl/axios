@@ -68,9 +68,10 @@ const UsersComponent = () => {
     setOpen(true);
   };
 
-  const getModifiedUser=(user:IUsers)=>{
-    //setChangedUser(user)
-  }
+  const getModifiedUser = (user: IUsers) => {
+    setUsers((users) => [...users.filter((u) => u.id !== user.id), user]);
+    console.log(user);
+  };
 
   const getChangedUser = (user: IUsers) => {
     setChangedUser(user);
@@ -98,7 +99,7 @@ const UsersComponent = () => {
         <Button onClick={openModalWindowHandler} variant="contained">
           Add User
         </Button>
-       
+
         <div>
           <Snackbar
             open={open}
@@ -126,7 +127,8 @@ const UsersComponent = () => {
         setClose={closeModalWindowHandler}
       />
 
-      <WrapperChange getModifiedUser={getModifiedUser}
+      <WrapperChange
+        getModifiedUser={getModifiedUser}
         user={changedUser}
         open={stateChangeWindows}
         setClose={closenWrapperChange}

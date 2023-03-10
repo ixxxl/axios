@@ -29,7 +29,7 @@ export const WrapperDialog = (props: IProps) => {
   const [formValidationState, setformValidationState] =
     useState<boolean>(false);
   const [btnSubmit, setBtnSubmit] = useState<boolean>(false);
- 
+
   const [data, setData] = useState<any | null>(null);
   const [error, setError] = useState("");
   const [loaded, setLoaded] = useState(false);
@@ -87,7 +87,7 @@ export const WrapperDialog = (props: IProps) => {
         photo: getFakePhoto(),
         birhday: geDataBirthDay(),
         name: "",
-        surname: "",
+        surname: ""
       };
       setNewUserState(u);
     }

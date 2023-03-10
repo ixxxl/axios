@@ -60,7 +60,7 @@ export const WrapperChange = (props: IPropsChange) => {
             `http://localhost:3020/users/${user.id}`,
             currentUserState
           );
-          refreshPage();
+         //refreshPage();
           props.getModifiedUser(response.data);
           // setClose();
         } catch (error: any) {
