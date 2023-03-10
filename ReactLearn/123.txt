@@ -1,0 +1,63 @@
+карточки
+кнопка список клиентов когда как список 
+еще кнопка 
+
+
+virtual dom and shadow dom
+functional component and clases component
+
+virtual DOM v react
+function eto container
+
+
+
+props v react - nabor parametrov
+function - eto tip dannih v JS
+
+
+
+Компоненты
+url photo
+idno
+imea familia
+opisanie
+
+10 usesrs
+
+
+postroiti json
+
+
+plugin po rabote json
+validite json
+
+
+sozdati component
+json server
+
+
+
+postroiti component otobrojenia
+mui
+
+
+
+минин владлен
+hooks
+
+
+
+componenti kak sozadiutsea
+
+
+emet
+
+
+
+антон лавричев  React+Next.js c нуля ... (2022) 
+
+
+spread vs rest
+
+
+

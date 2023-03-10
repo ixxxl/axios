@@ -1,0 +1,49 @@
+натйи при помощи снипетов FC component sgenerirovati
+
+
+как сделать декомпозицию пропсов
+
++devtools install
+
+горизонтальные данные
+
+wraper для каждого компонента (children component)
+
+flex box
+
+
+декомпозиция пропсов
+
+
+
+[?16.?02.?2023 11:02] Dumitru D. Stoian: 
+WebForMySelf | Бернацкий Андрей | Верстка-Мастер (2021) 
+1. HTML
+2. CSS
+3. CSS3 (бонус 1)
+4. FlexBox (бонус 2)
+это есть на nnmclub
+[?16.?02.?2023 11:03] Dumitru D. Stoian: 
+важно в CSS3: 
+- селекторы
+- псевдоселекторы 
+- псевдоклассы  
+
+
+111canvas javascript
+
+--
+comit,branch
+useEffect
+
+
+
+
+
+
+///
+minin useRef
+dialog from mui= component
+
+
+

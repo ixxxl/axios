@@ -1,0 +1,107 @@
+1 )https://www.youtube.com/watch?v=OJ16BaPC6VI - minin React и TypeScript - Быстрый Курс [2022]
+2) https://learn.javascript.ru/  - Современный учебник JavaScript
+
+
+
+кнопка переключения языков
+
+
+enum language=ELanguages
+
+1)refactoring:
+++ export context отдельно map helpers
+++change name copy to lang
+++enum RO RU
+buttons Ro/Ru useState
+
+** json s perevodami pri zagruzke on object.
+load state.
+
+stateManagement - useReducer
+Redux Toolkit
+
+Canvas нарисовать вектор из 4-х значений, порядковый номер это квартал. нарисовать график качества.
+канвас =400 на 200пикс
+
+
+
+useCalback useMemo
+
+https://ultimatecourses.com/blog/using-async-await-inside-react-use-effect-hook
+
+Axios sample
+https://blog.openreplay.com/integrating-axios-with-react-hooks/
+
+
+01.03.2023
+алекс бэнкс, ева порсело
+react современные шаблоны разработки приложений - - nnmclub.to
+глава 4,5  
+//глава 3
+
+замыкание closure - https://www.youtube.com/watch?v=YaGfHbT9xLY
+
+
+
+02.03.2023
+координатыб нарисовать прямоугольники
+
+рест апи удалить изменить добавить пользователя
+
+колумн чарт разного цвета.
+другой канвас линия
+кнопка переключения
+
+разделить страницы для рутинга
+
+03.03.23
+3,4
+useref
+
+
+
+toogleButton
+Вынести services
+
+
+
+
+react dev toolsmodal
+
+
+modal window - onClick cleanForm
+
+
+submit error correct
+доделать ошибки на фамилию
+отправить данные при савею payload for post
+получить ответ от поста, закрыть форму. вывести ответ пользователю о хорошем сохранении
+
+обновить страницу после создания пользователя.
+
+
+10.03.2023
+Hook Form
+https://www.youtube.com/watch?v=Jxfun6Jnt5Q  
+задача все что мы сделали "вручную" + что не сделали (я про валидации не только длины строк) 
+[?10.?03.?2023 10:12] Dumitru D. Stoian: 
+рефакторнуть ... (подзадача сделать в новой ветке ... ) 
+
+это домашка Nr1 
+1. создать новою ветку на основе той в которой сейчас "ручное подобие формы"
+2. Занести в проект hook form
+3. "Пронести" валидации(длина, символы ... ) и инфо (отображение ошибок) по двум полям ... 
+
+
+
+Мы с тобой привлекали доп. состояния для того чтобы контролировать обращение к серверу и получение ответов с блокирование отдельного UI и.т.п. 
+[?10.?03.?2023 10:21] Dumitru D. Stoian: 
+так вот начиная с определенной версии React (17+) есть такая сущность как suspense in React 
+это глава в книге 
+глава 9 
+плюс уже должна быть понятна и 8 глава 
+
+Очистка React компонентов с помощью React Hook Form и Material UI
+https://habr.com/ru/company/otus/blog/653017/
+
+
