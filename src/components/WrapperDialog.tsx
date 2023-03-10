@@ -40,6 +40,9 @@ export const WrapperDialog = (props: IProps) => {
   const surNameChangeHandler = (e: any) => {
     setNewUserState((st: any) => ({ ...st, surname: e.target.value }));
   };
+  const refreshPage=()=> {
+    window.location.reload();
+  }
 
   useEffect(() => {
     if (btnSubmit) {
@@ -50,6 +53,7 @@ export const WrapperDialog = (props: IProps) => {
             newUserState
           );
           props.getNewUser(response.data);
+          refreshPage();
           setClose();
         } catch (error: any) {
           setError(error.message);

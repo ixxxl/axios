@@ -53,6 +53,10 @@ const UsersComponent = () => {
     setStateChangeWindow(true);
   };
 
+  const closenWrapperChange = () => {
+    setStateChangeWindow(false);
+  };
+
   const closeModalWindowHandler = () => {
     setStateModalWindow(false);
   };
@@ -83,7 +87,7 @@ const UsersComponent = () => {
         <Button onClick={openModalWindowHandler} variant="contained">
           Add User
         </Button>
-        <Button onClick={openModalWindowHandler} variant="contained">
+        <Button onClick={openWrapperChange} variant="contained">
           Change User
         </Button>
         <Button onClick={openWrapperChange} variant="contained">
@@ -107,11 +111,11 @@ const UsersComponent = () => {
         open={stateModalWindow}
         setClose={closeModalWindowHandler}
       />
-      {/* <WrapperChange
-        getNewUser={getNewUser}
-        open={stateModalWindow}
-        setClose={closeModalWindowHandler}
-      /> */}
+      <WrapperChange
+        users={users}
+        open={stateChangeWindows}
+        setClose={closenWrapperChange}
+      />
     </>
   );
 };
