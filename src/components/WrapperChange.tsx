@@ -20,11 +20,12 @@ interface IPropsChange {
   setClose: any;
   user: any;
   getModifiedUser: (changedData: any) => void;
+  getDeletedUser: (delUser: any) => void;
 }
 
 export const WrapperChange = (props: IPropsChange) => {
   const { open, setClose, user } = props;
-
+  const [deleteState, setDeleteState] = useState<boolean>(false);
   const [currentUserState, setCurrentUserState] = useState<IUsers | null>(null);
 
   const [errorName, setErrorName] = useState<boolean>(false);
@@ -51,7 +52,7 @@ export const WrapperChange = (props: IPropsChange) => {
       setCurrentUserState(user);
     }
   }, [user]);
-
+  //Put
   useEffect(() => {
     if (btnSubmit) {
       (async () => {
@@ -60,8 +61,9 @@ export const WrapperChange = (props: IPropsChange) => {
             `http://localhost:3020/users/${user.id}`,
             currentUserState
           );
-         //refreshPage();
+
           props.getModifiedUser(response.data);
+
           // setClose();
         } catch (error: any) {
           setError(error.message);
@@ -72,10 +74,32 @@ export const WrapperChange = (props: IPropsChange) => {
     }
   }, [btnSubmit]);
 
-  const refreshPage = () => {
-    window.location.reload();
-  };
+  //Delete
+  useEffect(() => {
+    if (deleteState) {
+      (async () => {
+        try {
+          const response: any = await axios.delete(
+            `http://localhost:3020/users/${user.id}`
+          );
 
+          //  props.getDeletedUser(response.status);
+          console.log(response.status);
+
+          setClose();
+        } catch (error: any) {
+          setError(error.message);
+        } finally {
+          setLoaded(true);
+        }
+      })();
+    }
+  }, [deleteState]);
+
+  const deleteHandler: any = () => {
+    // works only with any
+    setDeleteState(true);
+  };
 
   const submitFormHandler = () => {
     console.log();
@@ -145,6 +169,15 @@ export const WrapperChange = (props: IPropsChange) => {
           <div>{u.name}</div>
         ))} */}
         <DialogActions>
+          <Button
+            onClick={() => {
+              if (window.confirm("Arre you sure you want to delete user?")) {
+                deleteHandler();
+              }
+            }}
+          >
+            Delete
+          </Button>
           {!btnSubmit ? (
             <Button
               onClick={submitFormHandler}

@@ -15,6 +15,7 @@ const UsersComponent = () => {
   const [stateModalWindow, setStateModalWindow] = useState<boolean>(false);
   const [stateChangeWindows, setStateChangeWindow] = useState<boolean>(false);
   const [changedUser, setChangedUser] = useState<IUsers | null>(null);
+  const [deleteUser, setDeletedUSer] = useState<IUsers | null>(null);
 
   const handleClick = () => {
     setOpen(true);
@@ -68,9 +69,11 @@ const UsersComponent = () => {
     setOpen(true);
   };
 
+  const getDeletedUser = (user: any) => {
+    setUsers((state) => [...state, user]);
+  };
   const getModifiedUser = (user: IUsers) => {
     setUsers((users) => [...users.filter((u) => u.id !== user.id), user]);
-    console.log(user);
   };
 
   const getChangedUser = (user: IUsers) => {
@@ -82,6 +85,10 @@ const UsersComponent = () => {
   useEffect(() => {
     setUsers(data);
   }, [data]);
+
+  useEffect(() => {
+    setUsers(data);
+  }, [deleteUser]);
 
   return (
     <>
@@ -111,7 +118,7 @@ const UsersComponent = () => {
         </div>
       </Stack>
       <hr />
-      <div onClick={changeUserEvent}>
+      <div>
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
           {users &&
             users.map((user) => (
@@ -128,17 +135,12 @@ const UsersComponent = () => {
       />
 
       <WrapperChange
+        getDeletedUser={getDeletedUser}
         getModifiedUser={getModifiedUser}
         user={changedUser}
         open={stateChangeWindows}
         setClose={closenWrapperChange}
       />
-
-      {/* <WrapperChange
-        users={users}
-        open={stateChangeWindows}
-        setClose={closenWrapperChange}
-      /> */}
     </>
   );
 };
