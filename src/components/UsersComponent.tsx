@@ -87,12 +87,7 @@ const UsersComponent = () => {
         <Button onClick={openModalWindowHandler} variant="contained">
           Add User
         </Button>
-        <Button onClick={openWrapperChange} variant="contained">
-          Change User
-        </Button>
-        <Button onClick={openWrapperChange} variant="contained">
-          Remove User
-        </Button>
+
         <div>
           <Snackbar
             open={open}
@@ -104,8 +99,10 @@ const UsersComponent = () => {
         </div>
       </Stack>
       <hr />
-      <pre> {JSON.stringify(users, null, 2)}</pre>
-
+      {users.map((user) => {
+        user.birhday;
+      })}
+      // <pre> {JSON.stringify(users, null, 2)}</pre>
       <WrapperDialog
         getNewUser={getNewUser}
         open={stateModalWindow}
