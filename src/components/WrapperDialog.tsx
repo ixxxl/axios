@@ -32,12 +32,14 @@ export const WrapperDialog = (props: IProps) => {
     formState: { errors, isValid },
   } = useForm({ mode: "onBlur" });
   const { open, setClose } = props;
+
   const [newUserState, setNewUserState] = useState<IUsers | null>(null);
   const [errorName, setErrorName] = useState<boolean>(false);
   const [errorSurname, setErrorSurname] = useState<boolean>(false);
   const [formValidationState, setformValidationState] =
     useState<boolean>(false);
   const [btnSubmit, setBtnSubmit] = useState<boolean>(false);
+
   const [data, setData] = useState<any | null>(null);
   const [error, setError] = useState("");
   const [loaded, setLoaded] = useState(false);
@@ -103,7 +105,13 @@ export const WrapperDialog = (props: IProps) => {
   }, [open]);
 
   const onSubmit = (data: any) => {
-    setNewUserState(data);
+    console.log(data);
+    setNewUserState((st: any) => ({
+      ...st,
+      name: data.firstName,
+      surname: data.lastName,
+    }));
+    //  setNewUserState(data);
     setBtnSubmit(true);
     reset();
   };
@@ -131,13 +139,13 @@ export const WrapperDialog = (props: IProps) => {
                       message:
                         "Вводите имя только на русском языке,без символов и цифр", // JS only: <p>error message</p> TS only support string
                     },
-                    onChange: (e) => {
-                      console.log(e.target.value);
-                      setNewUserState((st: any) => ({
-                        ...st,
-                        name: e.target.value,
-                      }));
-                    },
+                    // onChange: (e) => {
+                    //   console.log(e.target.value);
+                    //   setNewUserState((st: any) => ({
+                    //     ...st,
+                    //     name: e.target.value,
+                    //   }));
+                    // },
                   })}
                 />
               </label>
@@ -152,7 +160,7 @@ export const WrapperDialog = (props: IProps) => {
               <label>
                 Last Name:
                 <input
-                  {...register("lasttName", {
+                  {...register("lastName", {
                     required: "Обязательно для заполнения",
                     minLength: { value: 3, message: "minimum length 3" },
                     pattern: {
@@ -160,13 +168,13 @@ export const WrapperDialog = (props: IProps) => {
                       message:
                         "Вводите фамилию только на русском языке,без символов и цифр", // JS only: <p>error message</p> TS only support string
                     },
-                    onChange: (e) => {
-                      console.log(e.target.value);
-                      setNewUserState((st: any) => ({
-                        ...st,
-                        surname: e.target.value,
-                      }));
-                    },
+                    // onChange: (e) => {
+                    //   console.log(e.target.value);
+                    //   setNewUserState((st: any) => ({
+                    //     ...st,
+                    //     surname: e.target.value,
+                    //   }));
+                    // },
                   })}
                 />
                 <div>
