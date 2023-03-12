@@ -16,6 +16,7 @@ import { geDataBirthDay, getFakePhoto } from "../helpers/ComonFunction";
 import { IUsers } from "../models/userModels";
 import UsersComponent from "./UsersComponent";
 import { ErrorMessage } from "@hookform/error-message";
+import { text } from "body-parser";
 
 interface IProps {
   open: boolean;
@@ -102,7 +103,6 @@ export const WrapperDialog = (props: IProps) => {
   }, [open]);
 
   const onSubmit = (data: any) => {
-    alert(JSON.stringify(data));
     setNewUserState(data);
     setBtnSubmit(true);
     reset();
@@ -126,8 +126,17 @@ export const WrapperDialog = (props: IProps) => {
                   {...register("firstName", {
                     required: "Обязательно для заполнения",
                     minLength: { value: 3, message: "minimum length 3" },
+                    pattern: {
+                      value: /^[а-яА-Я]+$/,
+                      message:
+                        "Вводите имя только на русском языке,без символов и цифр", // JS only: <p>error message</p> TS only support string
+                    },
                     onChange: (e) => {
-                      setNewUserState(e);
+                      console.log(e.target.value);
+                      setNewUserState((st: any) => ({
+                        ...st,
+                        name: e.target.value,
+                      }));
                     },
                   })}
                 />
@@ -146,6 +155,18 @@ export const WrapperDialog = (props: IProps) => {
                   {...register("lasttName", {
                     required: "Обязательно для заполнения",
                     minLength: { value: 3, message: "minimum length 3" },
+                    pattern: {
+                      value: /^[а-яА-Я]+$/,
+                      message:
+                        "Вводите фамилию только на русском языке,без символов и цифр", // JS only: <p>error message</p> TS only support string
+                    },
+                    onChange: (e) => {
+                      console.log(e.target.value);
+                      setNewUserState((st: any) => ({
+                        ...st,
+                        surname: e.target.value,
+                      }));
+                    },
                   })}
                 />
                 <div>
