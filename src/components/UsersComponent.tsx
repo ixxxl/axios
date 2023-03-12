@@ -1,6 +1,6 @@
 import { Button, IconButton, Snackbar, Stack } from "@mui/material";
 import { Box, padding } from "@mui/system";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { IUsers } from "../models/userModels";
 import { useAxiosGet } from "../services/axiosGET";
 import { WrapperDialog } from "./WrapperDialog";
@@ -57,7 +57,7 @@ const UsersComponent = () => {
     setStateChangeWindow(false);
   };
 
-  const closeModalWindowHandler = () => {
+  const closeModalWindowHandler: any = () => {
     setStateModalWindow(false);
   };
 
@@ -101,11 +101,15 @@ const UsersComponent = () => {
       <hr />
 
       <pre> {JSON.stringify(users, null, 2)}</pre>
-      <WrapperDialog
-        getNewUser={getNewUser}
-        open={stateModalWindow}
-        setClose={closeModalWindowHandler}
-      />
+      <Suspense fallback={<p>Loading...</p>}>
+        {/* <ErrorBoundary fallback={ErrorScreen}> </ErrorBoundary> */}
+        <WrapperDialog
+          getNewUser={getNewUser}
+          open={stateModalWindow}
+          setClose={closeModalWindowHandler}
+        />
+      </Suspense>
+
       <WrapperChange
         users={users}
         open={stateChangeWindows}
