@@ -139,13 +139,13 @@ export const WrapperDialog = (props: IProps) => {
                       message:
                         "Вводите имя только на русском языке,без символов и цифр", // JS only: <p>error message</p> TS only support string
                     },
-                    // onChange: (e) => {
-                    //   console.log(e.target.value);
-                    //   setNewUserState((st: any) => ({
-                    //     ...st,
-                    //     name: e.target.value,
-                    //   }));
-                    // },
+                    onChange: (e) => {
+                      console.log(e.target.value);
+                      setNewUserState((st: any) => ({
+                        ...st,
+                        name: e.target.value,
+                      }));
+                    },
                   })}
                 />
               </label>
@@ -168,13 +168,13 @@ export const WrapperDialog = (props: IProps) => {
                       message:
                         "Вводите фамилию только на русском языке,без символов и цифр", // JS only: <p>error message</p> TS only support string
                     },
-                    // onChange: (e) => {
-                    //   console.log(e.target.value);
-                    //   setNewUserState((st: any) => ({
-                    //     ...st,
-                    //     surname: e.target.value,
-                    //   }));
-                    // },
+                    onChange: (e) => {
+                      console.log(e.target.value);
+                      setNewUserState((st: any) => ({
+                        ...st,
+                        surname: e.target.value,
+                      }));
+                    },
                   })}
                 />
                 <div>
