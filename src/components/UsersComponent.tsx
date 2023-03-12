@@ -1,5 +1,5 @@
 import { Button, IconButton, Snackbar, Stack } from "@mui/material";
-import { padding } from "@mui/system";
+import { Box, padding } from "@mui/system";
 import { useEffect, useState } from "react";
 import { IUsers } from "../models/userModels";
 import { useAxiosGet } from "../services/axiosGET";
@@ -99,10 +99,8 @@ const UsersComponent = () => {
         </div>
       </Stack>
       <hr />
-      {users.map((user) => {
-        user.birhday;
-      })}
-      // <pre> {JSON.stringify(users, null, 2)}</pre>
+
+      <pre> {JSON.stringify(users, null, 2)}</pre>
       <WrapperDialog
         getNewUser={getNewUser}
         open={stateModalWindow}

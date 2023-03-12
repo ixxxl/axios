@@ -126,6 +126,9 @@ export const WrapperDialog = (props: IProps) => {
                   {...register("firstName", {
                     required: "Обязательно для заполнения",
                     minLength: { value: 3, message: "minimum length 3" },
+                    onChange: (e) => {
+                      setNewUserState(e);
+                    },
                   })}
                 />
               </label>
