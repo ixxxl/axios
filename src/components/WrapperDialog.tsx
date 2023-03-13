@@ -106,12 +106,13 @@ export const WrapperDialog = (props: IProps) => {
 
   const onSubmit = (data: any) => {
     console.log(data);
+    const { firstName, lastName } = data;
     setNewUserState((st: any) => ({
       ...st,
-      name: data.firstName,
-      surname: data.lastName,
+      name: firstName,
+      surname: lastName,
     }));
-    //  setNewUserState(data);
+
     setBtnSubmit(true);
     reset();
   };
@@ -135,7 +136,7 @@ export const WrapperDialog = (props: IProps) => {
                     required: "Обязательно для заполнения",
                     minLength: { value: 3, message: "minimum length 3" },
                     pattern: {
-                      value: /^[а-яА-Я]+$/,
+                      value: /^[А-Я]+[а-яА-Я]+$/,
                       message:
                         "Вводите имя только на русском языке,без символов и цифр", // JS only: <p>error message</p> TS only support string
                     },
@@ -149,7 +150,7 @@ export const WrapperDialog = (props: IProps) => {
                   })}
                 />
               </label>
-              <div>
+              <div style={{ background: "red", color: "white" }}>
                 <ErrorMessage errors={errors} name="firstName" />
                 {/* <ErrorMessage
                   errors={errors}
@@ -164,7 +165,8 @@ export const WrapperDialog = (props: IProps) => {
                     required: "Обязательно для заполнения",
                     minLength: { value: 3, message: "minimum length 3" },
                     pattern: {
-                      value: /^[а-яА-Я]+$/,
+                      value: /^[А-Я]+[а-яА-Я]+$/,
+                      // value:   /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                       message:
                         "Вводите фамилию только на русском языке,без символов и цифр", // JS only: <p>error message</p> TS only support string
                     },
@@ -177,8 +179,8 @@ export const WrapperDialog = (props: IProps) => {
                     },
                   })}
                 />
-                <div>
-                  <ErrorMessage errors={errors} name="lasttName" />
+                <div style={{ background: "red", color: "white" }}>
+                  <ErrorMessage errors={errors} name="lastName" />
                 </div>
               </label>
 
