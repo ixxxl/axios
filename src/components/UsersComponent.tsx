@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 import { Box, Button, IconButton, Snackbar, Stack } from "@mui/material";
 import { padding } from "@mui/system";
 import { useEffect, useState } from "react";
-=======
-import { Button, IconButton, Snackbar, Stack } from "@mui/material";
-import { Box, padding } from "@mui/system";
-import { Suspense, useEffect, useState } from "react";
->>>>>>> HookForm
 import { IUsers } from "../models/userModels";
 import { useAxiosGet } from "../services/axiosGET";
 import { WrapperDialog } from "./WrapperDialog";
@@ -117,52 +111,22 @@ const UsersComponent = () => {
         </div>
       </Stack>
       <hr />
-<<<<<<< HEAD
       <div onClick={changeUserEvent}>
-=======
-<<<<<<< HEAD
-      <div>
->>>>>>> 8e290228a1f5a4b910d0106e7baa5187ff3df315
-        <Box sx={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
-          {users &&
-            users.map((user) => (
-              <OneUserComponent getChangedUser={getChangedUser} user={user} />
-            ))}
-        </Box>
-      </div>
-      {/* <pre> {JSON.stringify(users, null, 2)}</pre> */}
-
-      <WrapperDialog
-        getNewUser={getNewUser}
-        open={stateModalWindow}
-        setClose={closeModalWindowHandler}
-      />
-=======
-
-      <pre> {JSON.stringify(users, null, 2)}</pre>
-      <Suspense fallback={<p>Loading...</p>}>
-        {/* <ErrorBoundary fallback={ErrorScreen}> </ErrorBoundary> */}
-        <WrapperDialog
-          getNewUser={getNewUser}
-          open={stateModalWindow}
-          setClose={closeModalWindowHandler}
+        <WrapperChange
+          getModifiedUser={getModifiedUser}
+          user={changedUser}
+          open={stateChangeWindows}
+          setClose={closenWrapperChange}
         />
-      </Suspense>
->>>>>>> HookForm
 
-      <WrapperChange
-        getModifiedUser={getModifiedUser}
-        user={changedUser}
-        open={stateChangeWindows}
-        setClose={closenWrapperChange}
-      />
-
-      {/* <WrapperChange
+        {/* <WrapperChange
         users={users}
         open={stateChangeWindows}
         setClose={closenWrapperChange}
       /> */}
+      </div>
     </>
   );
 };
+
 export default UsersComponent;

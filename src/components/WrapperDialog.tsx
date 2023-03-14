@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { geDataBirthDay, getFakePhoto } from "../helpers/ComonFunction";
 import { IUsers } from "../models/userModels";
-import UsersComponent from "./UsersComponent";
+
 import { ErrorMessage } from "@hookform/error-message";
 import { text } from "body-parser";
 
@@ -82,7 +82,6 @@ export const WrapperDialog = (props: IProps) => {
     setBtnSubmit(true);
   };
 
-<<<<<<< HEAD
   useEffect(() => {
     if (newUserState) {
       setErrorName(newUserState.name.length < 3);
@@ -93,20 +92,6 @@ export const WrapperDialog = (props: IProps) => {
       console.log(newUserState.name.length, newUserState.surname.length);
     }
   }, [newUserState]);
-=======
-  // useEffect(() => {
-  //   if (newUserState) {
-  //     setErrorName(newUserState.name.length < 3);
-  //     setErrorSurname(newUserState.surname.length < 3);
-  //     setformValidationState(
-  //       newUserState.name.length < 3 && newUserState.surname.length < 3
-  //     );
-  //     console.log(
-  //       newUserState.name.length < 3 && newUserState.surname.length < 3
-  //     );
-  //   }
-  // }, [newUserState]);
->>>>>>> HookForm
 
   useEffect(() => {
     if (open) {

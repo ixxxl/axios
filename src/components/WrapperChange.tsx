@@ -1,4 +1,3 @@
-import { Save } from "@mui/icons-material";
 import {
   Button,
   Dialog,
@@ -20,7 +19,6 @@ interface IPropsChange {
   setClose: any;
   user: any;
   getModifiedUser: (changedData: any) => void;
-  getDeletedUser: (delUser: any) => void;
 }
 
 export const WrapperChange = (props: IPropsChange) => {
