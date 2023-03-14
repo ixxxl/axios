@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 import { Box, Button, IconButton, Snackbar, Stack } from "@mui/material";
 import { padding } from "@mui/system";
 import { useEffect, useState } from "react";
-=======
-import { Button, IconButton, Snackbar, Stack } from "@mui/material";
-import { Box, padding } from "@mui/system";
-import { Suspense, useEffect, useState } from "react";
->>>>>>> HookForm
 import { IUsers } from "../models/userModels";
 import { useAxiosGet } from "../services/axiosGET";
 import { WrapperDialog } from "./WrapperDialog";
@@ -21,7 +15,6 @@ const UsersComponent = () => {
   const [stateModalWindow, setStateModalWindow] = useState<boolean>(false);
   const [stateChangeWindows, setStateChangeWindow] = useState<boolean>(false);
   const [changedUser, setChangedUser] = useState<IUsers | null>(null);
-  const [deleteUser, setDeletedUSer] = useState<IUsers | null>(null);
 
   const handleClick = () => {
     setOpen(true);
@@ -66,7 +59,7 @@ const UsersComponent = () => {
     setStateChangeWindow(false);
   };
 
-  const closeModalWindowHandler: any = () => {
+  const closeModalWindowHandler = () => {
     setStateModalWindow(false);
   };
 
@@ -75,11 +68,9 @@ const UsersComponent = () => {
     setOpen(true);
   };
 
-  const getDeletedUser = (user: any) => {
-    setUsers((state) => [...state, user]);
-  };
   const getModifiedUser = (user: IUsers) => {
     setUsers((users) => [...users.filter((u) => u.id !== user.id), user]);
+    console.log(user);
   };
 
   const getChangedUser = (user: IUsers) => {
@@ -91,10 +82,6 @@ const UsersComponent = () => {
   useEffect(() => {
     setUsers(data);
   }, [data]);
-
-  useEffect(() => {
-    setUsers(data);
-  }, [deleteUser]);
 
   return (
     <>
@@ -124,8 +111,7 @@ const UsersComponent = () => {
         </div>
       </Stack>
       <hr />
-<<<<<<< HEAD
-      <div>
+      <div onClick={changeUserEvent}>
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
           {users &&
             users.map((user) => (
@@ -140,26 +126,19 @@ const UsersComponent = () => {
         open={stateModalWindow}
         setClose={closeModalWindowHandler}
       />
-=======
-
-      <pre> {JSON.stringify(users, null, 2)}</pre>
-      <Suspense fallback={<p>Loading...</p>}>
-        {/* <ErrorBoundary fallback={ErrorScreen}> </ErrorBoundary> */}
-        <WrapperDialog
-          getNewUser={getNewUser}
-          open={stateModalWindow}
-          setClose={closeModalWindowHandler}
-        />
-      </Suspense>
->>>>>>> HookForm
 
       <WrapperChange
-        getDeletedUser={getDeletedUser}
         getModifiedUser={getModifiedUser}
         user={changedUser}
         open={stateChangeWindows}
         setClose={closenWrapperChange}
       />
+
+      {/* <WrapperChange
+        users={users}
+        open={stateChangeWindows}
+        setClose={closenWrapperChange}
+      /> */}
     </>
   );
 };
