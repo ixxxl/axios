@@ -7,13 +7,7 @@ import { WrapperDialog } from "./components/WrapperDialog";
 function App() {
   return (
     <div className="App">
-<<<<<<< HEAD
       <UsersComponent />
-=======
-      <Suspense fallback={<p>Loading...</p>}>
-        <UsersComponent />
-      </Suspense>
->>>>>>> HookForm
     </div>
   );
 }
