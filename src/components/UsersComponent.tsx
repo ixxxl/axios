@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import { Box, Button, IconButton, Snackbar, Stack } from "@mui/material";
 import { padding } from "@mui/system";
 import { useEffect, useState } from "react";
+=======
+import { Button, IconButton, Snackbar, Stack } from "@mui/material";
+import { Box, padding } from "@mui/system";
+import { Suspense, useEffect, useState } from "react";
+>>>>>>> HookForm
 import { IUsers } from "../models/userModels";
 import { useAxiosGet } from "../services/axiosGET";
 import { WrapperDialog } from "./WrapperDialog";
@@ -60,7 +66,7 @@ const UsersComponent = () => {
     setStateChangeWindow(false);
   };
 
-  const closeModalWindowHandler = () => {
+  const closeModalWindowHandler: any = () => {
     setStateModalWindow(false);
   };
 
@@ -118,6 +124,7 @@ const UsersComponent = () => {
         </div>
       </Stack>
       <hr />
+<<<<<<< HEAD
       <div>
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
           {users &&
@@ -133,6 +140,18 @@ const UsersComponent = () => {
         open={stateModalWindow}
         setClose={closeModalWindowHandler}
       />
+=======
+
+      <pre> {JSON.stringify(users, null, 2)}</pre>
+      <Suspense fallback={<p>Loading...</p>}>
+        {/* <ErrorBoundary fallback={ErrorScreen}> </ErrorBoundary> */}
+        <WrapperDialog
+          getNewUser={getNewUser}
+          open={stateModalWindow}
+          setClose={closeModalWindowHandler}
+        />
+      </Suspense>
+>>>>>>> HookForm
 
       <WrapperChange
         getDeletedUser={getDeletedUser}
