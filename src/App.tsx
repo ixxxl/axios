@@ -1,5 +1,4 @@
 import React, { Suspense, useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import UsersComponent from "./components/UsersComponent";
 import { geDataBirthDay } from "./helpers/ComonFunction";
