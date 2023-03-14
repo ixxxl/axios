@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { geDataBirthDay, getFakePhoto } from "../helpers/ComonFunction";
 import { IUsers } from "../models/userModels";
-
+import UsersComponent from "./UsersComponent";
 import { ErrorMessage } from "@hookform/error-message";
 import { text } from "body-parser";
 
@@ -51,9 +51,6 @@ export const WrapperDialog = (props: IProps) => {
   const surNameChangeHandler = (e: any) => {
     setNewUserState((st: any) => ({ ...st, surname: e.target.value }));
   };
-  const refreshPage = () => {
-    window.location.reload();
-  };
 
   useEffect(() => {
     if (btnSubmit) {
@@ -65,7 +62,7 @@ export const WrapperDialog = (props: IProps) => {
             newUserState
           );
           props.getNewUser(response.data);
-          refreshPage();
+
           setClose();
         } catch (error: any) {
           setError(error.message);
@@ -82,16 +79,18 @@ export const WrapperDialog = (props: IProps) => {
     setBtnSubmit(true);
   };
 
-  useEffect(() => {
-    if (newUserState) {
-      setErrorName(newUserState.name.length < 3);
-      setErrorSurname(newUserState.surname.length < 3);
-      setformValidationState(
-        newUserState.name.length < 3 && newUserState.surname.length < 3
-      );
-      console.log(newUserState.name.length, newUserState.surname.length);
-    }
-  }, [newUserState]);
+  // useEffect(() => {
+  //   if (newUserState) {
+  //     setErrorName(newUserState.name.length < 3);
+  //     setErrorSurname(newUserState.surname.length < 3);
+  //     setformValidationState(
+  //       newUserState.name.length < 3 && newUserState.surname.length < 3
+  //     );
+  //     console.log(
+  //       newUserState.name.length < 3 && newUserState.surname.length < 3
+  //     );
+  //   }
+  // }, [newUserState]);
 
   useEffect(() => {
     if (open) {
@@ -99,7 +98,7 @@ export const WrapperDialog = (props: IProps) => {
         photo: getFakePhoto(),
         birhday: geDataBirthDay(),
         name: "",
-        surname: ""
+        surname: "",
       };
       setNewUserState(u);
     }
