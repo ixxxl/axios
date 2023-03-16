@@ -112,10 +112,9 @@ const UsersComponent = () => {
       </Stack>
       <hr />
       <div onClick={changeUserEvent}>
-        <WrapperChange
-          getModifiedUser={getModifiedUser}
-          user={changedUser}
-          open={stateChangeWindows}
+        <WrapperDialog
+          getNewUser={getNewUser}
+          open={stateModalWindow}
           setClose={closenWrapperChange}
         />
 
