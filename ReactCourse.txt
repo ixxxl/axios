@@ -30,28 +30,10 @@ https://www.youtube.com/watch?v=_pLpx6btq6U
 https://learn.javascript.ru/regular-expressions
 
 
-  "console.log": {
-    "scope": "javascript,typescript,typescriptreact",
-    "prefix": "cl",
-    "body": ["console.log(`$1`);"],
-    "description": "Log output to console"
-  },
-  "useEffect": {
-    "scope": "javascript,typescript,typescriptreact",
-    "prefix": "useEffect",
-    "body": ["useEffect(()=>{    },[])"],
-    "description": "useEffect"
-  },
-  "useState": {
-    "scope": "javascript,typescript,typescriptreact",
-    "prefix": "useState",
-    "body": ["const [$1, ]= useState<>(null))"],
-    "description": "useEffect"
-  },
-  "export const =()=>{}": {
-    "scope": "javascript,typescript,typescriptreact",
-    "prefix": "export",
-    "body": [" interface IUser {  }   export const =(props:IUser):string=>{}"],
-    "description": "useEffect"
-  }
-}
+Styled Component
+
+https://habr.com/ru/post/591381/ 
+вот идеальная статья для вхождения 
+
+плюс примеры и фичи  
+https://github.com/styled-components/awesome-styled-components#styled-components 
