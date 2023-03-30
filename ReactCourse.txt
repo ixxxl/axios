@@ -37,3 +37,14 @@ https://habr.com/ru/post/591381/
 
 плюс примеры и фичи  
 https://github.com/styled-components/awesome-styled-components#styled-components 
+
+
+30.03.2023
+state management redux tolkit непомнящий  redux toolkit
+
+1) TS
+2) State maanagement - redux toolkit
+3) real project
+4) figma
+
+прототипирование проекта в figma
