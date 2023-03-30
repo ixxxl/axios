@@ -42,7 +42,7 @@ https://github.com/styled-components/awesome-styled-components#styled-components
 30.03.2023
 state management redux tolkit непомнящий  redux toolkit
 
-1) TS
+1) TS - https://nnmclub.to/forum/viewtopic.php?t=1604118
 2) State maanagement - redux toolkit
 3) real project
 4) figma
